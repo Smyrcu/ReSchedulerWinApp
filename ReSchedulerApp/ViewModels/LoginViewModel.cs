@@ -20,10 +20,23 @@ namespace ReSchedulerApp.ViewModels
         private SecureString _password;
         private string _errorMessage;
         private bool _isViewVisible = true;
+        private string _token;
 
         private IUserModel userModel;
 
         //Properties
+        public string Token
+        {
+            get
+            {
+                return _token;
+            }
+            set
+            {
+                _token = value;
+                OnPropertyChanged(nameof(Token));
+            }
+        }
         public string Username
         {
             get
@@ -107,10 +120,11 @@ namespace ReSchedulerApp.ViewModels
         private void ExecuteLoginCommand(object obj)
         {
             var isValidUser = userModel.AuthenticateUser(new System.Net.NetworkCredential(Username, Password));
+            Token = userModel.GetActualUser().Token;
             if (isValidUser)
             {
                 Thread.CurrentPrincipal = new GenericPrincipal(
-                    new GenericIdentity(Username), null);
+                    new GenericIdentity(Token), null);
                 IsViewVisible = false;
             }
             else

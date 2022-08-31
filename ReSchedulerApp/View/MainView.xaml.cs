@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ReSchedulerApp.ApiConnection;
 using ReSchedulerApp.Models;
 
 namespace ReSchedulerApp.View
@@ -21,10 +23,14 @@ namespace ReSchedulerApp.View
     public partial class MainView : Window
     {
         private readonly User _user;
+        private readonly UserService userService;
 
-        public MainView(User user)
+        public MainView()
         {
-            _user = user;
+            string Token = Thread.CurrentPrincipal.Identity.Name;
+            userService = new UserService(Token);
+            userService.GetUser(Token);
+            _user = userService.GetActualUser();
             InitializeComponent();
         }
     }

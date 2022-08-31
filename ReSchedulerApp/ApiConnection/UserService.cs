@@ -33,6 +33,13 @@ namespace ReSchedulerApp.ApiConnection
             constants = new Constants();
         }
 
+        public UserService(string token)
+        {
+            _user = new User();
+            _user.Token = token;
+            constants = new Constants();
+        }
+
 
         public bool LoginUser(UserLoginModel userLoginModel)
         {
