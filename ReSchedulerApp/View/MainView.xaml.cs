@@ -14,6 +14,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ReSchedulerApp.ApiConnection;
 using ReSchedulerApp.Models;
+using System.Runtime.InteropServices;
+using System.Runtime;
+using System.Windows.Interop;
 
 namespace ReSchedulerApp.View
 {
@@ -27,11 +30,25 @@ namespace ReSchedulerApp.View
 
         public MainView()
         {
-            string Token = Thread.CurrentPrincipal.Identity.Name;
+            /*string Token = Thread.CurrentPrincipal.Identity.Name;
             userService = new UserService(Token);
             userService.GetUser(Token);
-            _user = userService.GetActualUser();
+            _user = userService.GetActualUser();*/
             InitializeComponent();
+        }
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+
+        private void ControlBarPanel_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            WindowInteropHelper helper = new WindowInteropHelper(this);
+            SendMessage(helper.Handle, 161, 2, 0);
+        }
+
+        private void ControlBarPanel_OnMouseEnter(object sender, MouseEventArgs e)
+        {
+            this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
         }
     }
 }

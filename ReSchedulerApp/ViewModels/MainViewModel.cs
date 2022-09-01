@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -41,6 +42,9 @@ namespace ReSchedulerApp.ViewModels
 
         private void LoadCurrentUserData()
         {
+            string Token = Thread.CurrentPrincipal.Identity.Name;
+            userModel.DisplayUserInfo(Token);
+
             var user = userModel.GetActualUser();
             if (user != null)
             {
@@ -50,7 +54,7 @@ namespace ReSchedulerApp.ViewModels
             }
             else
             {
-                MessageBox.Show("Invalid user, not logged in");
+                CurrentUserAccount.DisplayName = "Invalid user, not logged in";
                 Application.Current.Shutdown();
             }
         }

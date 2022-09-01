@@ -12,6 +12,7 @@ namespace ReSchedulerApp.Models
         bool AuthenticateUser(NetworkCredential networkCredential);
         User GetActualUser();
         IEnumerable<User> GetAllUsers();
+        User DisplayUserInfo(string token);
 
     }
 }

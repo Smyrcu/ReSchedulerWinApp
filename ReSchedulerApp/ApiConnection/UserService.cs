@@ -45,12 +45,18 @@ namespace ReSchedulerApp.ApiConnection
         {
             _user.Token = GetLoginToken(userLoginModel);
             if (_user.Token == null) return false;
-
-            GetUser(_user.Token);
-
-            _user.role = new Role(_user.RoleId);
+            // GetUser(_user.Token);
+            //
+            // _user.role = new Role(_user.RoleId);
 
             return true;
+        }
+
+        public User DisplayUserInfo(string token)
+        {
+            GetUser(token);
+            _user.role = new Role(_user.RoleId);
+            return _user;
         }
 
         public string GetLoginToken(UserLoginModel userLoginModel)

@@ -22,7 +22,7 @@ namespace ReSchedulerApp
             loginView.IsVisibleChanged += (s, ev) =>
             {
                 if (loginView.IsVisible != false || !loginView.IsLoaded) return;
-                var mainView = new MainView(new User());
+                var mainView = new MainView();
                 mainView.Show();
                 loginView.Close();
             };

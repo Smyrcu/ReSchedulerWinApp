@@ -29,11 +29,5 @@ namespace ReSchedulerApp.View
             Application.Current.Shutdown();
         }
 
-        private void ButtonLogin_OnClick(object sender, RoutedEventArgs e)
-        {
-            MainView mainMenu = new MainView(new User());
-            mainMenu.Show();
-            this.Close();
-        }
     }
 }
