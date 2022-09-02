@@ -50,5 +50,22 @@ namespace ReSchedulerApp.View
         {
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
         }
+
+        private void CloseButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void MinimizeButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void MaximizeButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == WindowState.Normal)
+                this.WindowState = WindowState.Maximized;
+            else this.WindowState = WindowState.Normal;
+        }
     }
 }

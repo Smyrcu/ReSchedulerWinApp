@@ -49,7 +49,7 @@ namespace ReSchedulerApp.ViewModels
             if (user != null)
             {
                 CurrentUserAccount.Username = user.Email;
-                CurrentUserAccount.DisplayName = $"Welcome {user.Name} {user.Surname} ;)";
+                CurrentUserAccount.DisplayName = $"Welcome {user.Name} {user.Surname}";
                 CurrentUserAccount.ProfilePicture = null;
             }
             else
