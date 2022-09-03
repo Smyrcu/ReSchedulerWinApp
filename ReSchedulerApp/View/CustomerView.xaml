@@ -23,18 +23,24 @@
                         Grid.Column="0">
                 <fa:IconImage Icon="Search" Height="20" Width="20" Foreground="{StaticResource plainTextColor3}"/>
                 <TextBox Text="Search..."   
-                    FontSize="13"
+                         Name="SearchTextBox"
+                         MouseDown="SearchTextBox_OnMouseDown"
+                         FontSize="13"
                          Height="24"
-                           Width="300"
-                           Background="Transparent"
-                             FontWeight="Medium"
-                             FontFamily="Montserrat"                            
-                             Foreground="{StaticResource plainTextColor3}"
-                             CaretBrush="{StaticResource plainTextColor3}"
-                             BorderBrush="{StaticResource plainTextColor3}"
-                             BorderThickness="0,0,0,1"                             
-                             VerticalContentAlignment="Center"
-                             Margin="5,5,0,0"></TextBox>
+                         Width="300"
+                         Background="Transparent"
+                         FontWeight="Medium"
+                         FontFamily="Montserrat"                            
+                         Foreground="{StaticResource plainTextColor3}"
+                         CaretBrush="{StaticResource plainTextColor3}"
+                         BorderBrush="{StaticResource plainTextColor3}"
+                         BorderThickness="0,0,0,1"                             
+                         VerticalContentAlignment="Center"
+                         Margin="5,5,0,0">
+                    <TextBox.InputBindings>
+                        <KeyBinding Command="{Binding SearchCommand}"/>
+                    </TextBox.InputBindings>
+                </TextBox>
             </StackPanel>
             <Button Grid.Column="1"
                             Command="{Binding LoginCommand}"                            
@@ -44,7 +50,8 @@
                             Cursor="Hand"
                             BorderThickness="0"
                             Foreground="White"
-                    VerticalAlignment="Top">
+                            VerticalAlignment="Top"
+                            Click="ButtonBase_OnClick">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#773DFF"/>
@@ -73,14 +80,16 @@
                 Background="#200F53"
                 CornerRadius="10" 
                 Padding="10">
-            <DataGrid Name="People"
+            <DataGrid Name="PeopleGrid"
                       ItemsSource="{Binding People}"
-                ColumnWidth="*"
-                  Background="#200F53"
-                  BorderThickness="0"
+                      ColumnWidth="*"
+                      Background="#200F53"
+                      BorderThickness="0"
                       CanUserAddRows="False"
                       RowHeaderWidth="0"
-                      AutoGenerateColumns="False">
+                      AutoGenerateColumns="False"
+                      HorizontalGridLinesBrush="{StaticResource color8}"
+                      VerticalGridLinesBrush="{StaticResource color8}">
 
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
@@ -95,15 +104,15 @@
                     <Style TargetType="DataGridRow">
                         <Setter Property="Background" Value="Transparent"/>
                         <Setter Property="Foreground" Value="{StaticResource color8}"/>
+                        <Setter Property="FontSize" Value="15"/>
                     </Style>
                 </DataGrid.RowStyle>
                 <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="ID" Binding="{Binding id}" ClipboardContentBinding="{x:Null}" Header="ID" HeaderStringFormat=""/>
+                    <DataGridTextColumn x:Name="ID" Binding="{Binding id}" ClipboardContentBinding="{x:Null}" Header="ID" HeaderStringFormat="" Width="40"/>
                     <DataGridTextColumn x:Name="Name" Binding="{Binding name}"  Header="First name"/>
                     <DataGridTextColumn Binding="{Binding surname}" ClipboardContentBinding="{x:Null}" Header="Last name"/>
                     <DataGridTextColumn Binding="{Binding roleId}" ClipboardContentBinding="{x:Null}" Header="Phone"/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Number"/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Address"/>
+                    <DataGridTextColumn Binding="{Binding phonenumber}" ClipboardContentBinding="{x:Null}" Header="Number"/>
                 </DataGrid.Columns>
             </DataGrid>
 

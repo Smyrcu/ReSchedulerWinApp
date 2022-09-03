@@ -14,6 +14,7 @@ namespace ReSchedulerApp.Models
         public string? email { get; set; }
         public int roleId { get; set; }
         public string? token { get; set; }
+        public string? phonenumber { get; set; }
 
         public virtual Role? role { get; set; }
         

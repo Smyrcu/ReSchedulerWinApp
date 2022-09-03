@@ -84,6 +84,8 @@ namespace ReSchedulerApp.ApiConnection
             {
                 Uri uri = new Uri(constants.GetLogged());
 
+                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+
                 var newPost = token;
                 var newPostJson = JsonSerializer.Serialize(newPost);
                 var payload = new StringContent(newPostJson, Encoding.UTF8, "application/json");
@@ -97,6 +99,8 @@ namespace ReSchedulerApp.ApiConnection
             using (HttpClient client = new HttpClient())
             {
                 Uri uri = new Uri(constants.GetUserById(_user.id));
+
+                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
 
                 var result = client.GetAsync(uri).Result.Content.ReadAsStringAsync().Result;
 
