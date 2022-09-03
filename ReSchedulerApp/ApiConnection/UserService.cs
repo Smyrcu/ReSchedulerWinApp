@@ -36,15 +36,15 @@ namespace ReSchedulerApp.ApiConnection
         public UserService(string token)
         {
             _user = new User();
-            _user.Token = token;
+            _user.token = token;
             constants = new Constants();
         }
 
 
         public bool LoginUser(UserLoginModel userLoginModel)
         {
-            _user.Token = GetLoginToken(userLoginModel);
-            if (_user.Token == null) return false;
+            _user.token = GetLoginToken(userLoginModel);
+            if (_user.token == null) return false;
             // GetUser(_user.Token);
             //
             // _user.role = new Role(_user.RoleId);
@@ -55,7 +55,7 @@ namespace ReSchedulerApp.ApiConnection
         public User DisplayUserInfo(string token)
         {
             GetUser(token);
-            _user.role = new Role(_user.RoleId);
+            _user.role = new Role(_user.roleId);
             return _user;
         }
 
@@ -91,22 +91,22 @@ namespace ReSchedulerApp.ApiConnection
                 var result = client.PostAsync(uri, payload).Result.Content.ReadAsStringAsync().Result;
                 JsonObject jsonObject = new JsonObject();
                 jsonObject = JsonSerializer.Deserialize<JsonObject>(result) ?? throw new Exception("Wrong result!");
-                _user.Id = Parse(jsonObject["value"]!.ToString());
+                _user.id = Parse(jsonObject["value"]!.ToString());
             }
 
             using (HttpClient client = new HttpClient())
             {
-                Uri uri = new Uri(constants.GetUserById(_user.Id));
+                Uri uri = new Uri(constants.GetUserById(_user.id));
 
                 var result = client.GetAsync(uri).Result.Content.ReadAsStringAsync().Result;
 
                 JsonObject json = new JsonObject();
                 json = JsonSerializer.Deserialize<JsonObject>(result) ?? throw new Exception("Wrong result!");
 
-                _user.Email = json["email"]!.ToString();
-                _user.Name = json["name"]!.ToString();
-                _user.Surname = json["surname"]!.ToString();
-                _user.RoleId = Parse(json["roleId"]!.ToString());
+                _user.name = json["email"]!.ToString();
+                _user.name = json["name"]!.ToString();
+                _user.surname = json["surname"]!.ToString();
+                _user.roleId = Parse(json["roleId"]!.ToString());
             }
         }
 

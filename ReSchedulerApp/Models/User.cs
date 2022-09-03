@@ -8,12 +8,12 @@ namespace ReSchedulerApp.Models
 {
     public class User
     {
-        public int Id { get; set; }
-        public string? Name { get; set; }
-        public string? Surname { get; set; }
-        public string? Email { get; set; }
-        public int RoleId { get; set; }
-        public string? Token { get; set; }
+        public int id { get; set; }
+        public string? name { get; set; }
+        public string? surname { get; set; }
+        public string? email { get; set; }
+        public int roleId { get; set; }
+        public string? token { get; set; }
 
         public virtual Role? role { get; set; }
         

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using ReSchedulerApp.ApiConnection;
+using ReSchedulerApp.Models;
+using System;
 using System.Security;
 using System.Security.Principal;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Documents;
 using System.Windows.Input;
-using ReSchedulerApp.ApiConnection;
-using ReSchedulerApp.Models;
 
 namespace ReSchedulerApp.ViewModels
 {
@@ -120,7 +115,7 @@ namespace ReSchedulerApp.ViewModels
         private void ExecuteLoginCommand(object obj)
         {
             var isValidUser = userModel.AuthenticateUser(new System.Net.NetworkCredential(Username, Password));
-            Token = userModel.GetActualUser().Token;
+            Token = userModel.GetActualUser().token;
             if (isValidUser)
             {
                 Thread.CurrentPrincipal = new GenericPrincipal(

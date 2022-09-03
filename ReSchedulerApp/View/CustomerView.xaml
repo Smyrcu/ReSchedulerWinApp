@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ReSchedulerApp.View"
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:dc="clr-namespace:ReSchedulerApp.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -72,9 +73,15 @@
                 Background="#200F53"
                 CornerRadius="10" 
                 Padding="10">
-            <DataGrid ColumnWidth="*"
+            <DataGrid Name="People"
+                      ItemsSource="{Binding People}"
+                ColumnWidth="*"
                   Background="#200F53"
-                  BorderThickness="0">
+                  BorderThickness="0"
+                      CanUserAddRows="False"
+                      RowHeaderWidth="0"
+                      AutoGenerateColumns="False">
+
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="Background" Value="Transparent"/>
@@ -84,15 +91,36 @@
                         <Setter Property="FontSize" Value="15"/>
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Foreground" Value="{StaticResource color8}"/>
+                    </Style>
+                </DataGrid.RowStyle>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="ID" HeaderStringFormat=""/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="First name"/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Last name"/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Phone"/>
+                    <DataGridTextColumn x:Name="ID" Binding="{Binding id}" ClipboardContentBinding="{x:Null}" Header="ID" HeaderStringFormat=""/>
+                    <DataGridTextColumn x:Name="Name" Binding="{Binding name}"  Header="First name"/>
+                    <DataGridTextColumn Binding="{Binding surname}" ClipboardContentBinding="{x:Null}" Header="Last name"/>
+                    <DataGridTextColumn Binding="{Binding roleId}" ClipboardContentBinding="{x:Null}" Header="Phone"/>
                     <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Number"/>
                     <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Address"/>
                 </DataGrid.Columns>
             </DataGrid>
+
+            <!--<DataGrid Name="DataGrid"
+                      Background="#200F53"
+                      BorderThickness="0">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Foreground" Value="#BCBEE0"/>
+                        <Setter Property="Padding" Value="10,0,0,10"/>
+                        <Setter Property="FontFamily" Value="Montserrat"/>
+                        <Setter Property="FontSize" Value="15"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+
+            </DataGrid>-->
         </Border>
     </Grid>
 </UserControl>

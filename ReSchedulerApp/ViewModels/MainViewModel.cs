@@ -114,8 +114,8 @@ namespace ReSchedulerApp.ViewModels
             var user = userModel.GetActualUser();
             if (user != null)
             {
-                CurrentUserAccount.Username = user.Email;
-                CurrentUserAccount.DisplayName = $"{user.Name} {user.Surname}";
+                CurrentUserAccount.Username = user.email;
+                CurrentUserAccount.DisplayName = $"{user.name} {user.surname}";
                 CurrentUserAccount.ProfilePicture = null;
             }
             else
