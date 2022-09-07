@@ -1,7 +1,5 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
-using ReSchedulerApp.ViewModels;
 using UserControl = System.Windows.Controls.UserControl;
 
 namespace ReSchedulerApp.View
@@ -18,15 +16,15 @@ namespace ReSchedulerApp.View
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            CustomerViewModel viewModel = new CustomerViewModel();
-            viewModel.SearchButton(SearchTextBox.Text);
+            PeopleGrid.Items.Refresh();
         }
 
         private void SearchTextBox_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (SearchTextBox.Text == "Search...")
                 SearchTextBox.Text = string.Empty;
-            SearchTextBox.SelectAll();
+
+            SearchTextBox.Select(0, SearchTextBox.Text.Length);
         }
     }
 }

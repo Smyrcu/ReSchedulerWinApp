@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Threading;
@@ -18,10 +19,10 @@ namespace ReSchedulerApp.ViewModels
         private IEnumerable<User> users;
         private DataView dataView { get; set; }
         private string _searchText;
-        private BindableCollection<User> _people;
+        private ObservableCollection<User> _people;
 
         //Properties
-        public BindableCollection<User> People
+        public ObservableCollection<User> People
         {
             get
             {
@@ -66,7 +67,7 @@ namespace ReSchedulerApp.ViewModels
         public void SearchButton(string phrase)
         {
             if (string.IsNullOrEmpty(phrase))
-                People = new BindableCollection<User>(users);
+                People = new ObservableCollection<User>(users);
 
             List<User> newUsers = new List<User>();
             foreach (var user in users)
@@ -97,7 +98,7 @@ namespace ReSchedulerApp.ViewModels
                 
             }
 
-            People = new BindableCollection<User>(newUsers);
+            People = new ObservableCollection<User>(newUsers);
         }
     }
 }

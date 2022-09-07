@@ -25,6 +25,10 @@
         <DataTemplate DataType="{x:Type viewModel:CustomerViewModel}">
             <local:CustomerView/>
         </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type viewModel:AddScheduleViewModel}">
+            <local:AddScheduleView/>
+        </DataTemplate>
 
     </Window.Resources>
 
@@ -94,27 +98,28 @@
                                  Command="{Binding ShowCustomerViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="UserGroup"  Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Customers" Style="{StaticResource menuButtonText}"></TextBlock>
+                            <TextBlock Text="Workers" Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color3}">
+                                 Tag="{StaticResource color3}"
+                                 Command="{Binding ShowAddScheduleViewCommand}">
                         <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="Truck"  Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Order" Style="{StaticResource menuButtonText}"></TextBlock>
+                            <fa:IconImage Icon="CalendarPlus"  Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Add Schedule" Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color4}">
                         <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="ShoppingBag"  Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Transaction" Style="{StaticResource menuButtonText}"></TextBlock>
+                            <fa:IconImage Icon="CalendarCheck"  Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Edit Schedule" Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </RadioButton>
 
-                    <RadioButton Style="{StaticResource menuButton}"
+                    <!--<RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color5}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Box"  Style="{StaticResource menuButtonIcon}"/>
@@ -136,7 +141,7 @@
                             <fa:IconImage Icon="PieChart"  Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Report" Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
-                    </RadioButton>
+                    </RadioButton>-->
 
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color8}">

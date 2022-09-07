@@ -1,0 +1,14 @@
+﻿- Search box filtering list
+- Search box hint
+- Customers -> Users/Workers
+- Api connection for schedule
+- Adding new user (api register)
+- Editing user info (add it to api)
+- Showing and editing schedules
+- Making new schedules
+
+
+
+
+
+

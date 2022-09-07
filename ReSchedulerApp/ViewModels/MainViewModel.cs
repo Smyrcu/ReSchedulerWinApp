@@ -76,6 +76,7 @@ namespace ReSchedulerApp.ViewModels
         //--> Commands
         public ICommand ShowHomeViewCommand { get; }
         public ICommand ShowCustomerViewCommand { get; }
+        public ICommand ShowAddScheduleViewCommand { get; }
 
         public MainViewModel()
         {
@@ -85,11 +86,19 @@ namespace ReSchedulerApp.ViewModels
             // Initialize commands
             ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
             ShowCustomerViewCommand = new ViewModelCommand(ExecuteShowCustomerViewCommand);
+            ShowAddScheduleViewCommand = new ViewModelCommand(ExecuteShowAddScheduleViewModel);
 
             //Default view
             ExecuteShowHomeViewCommand(null);
             
             LoadCurrentUserData();
+        }
+
+        private void ExecuteShowAddScheduleViewModel(object obj)
+        {
+            CurrentChildView = new AddScheduleViewModel();
+            Caption = "Add Schedule";
+            Icon = IconChar.CalendarPlus;
         }
 
         private void ExecuteShowCustomerViewCommand(object obj)

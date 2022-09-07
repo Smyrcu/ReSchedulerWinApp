@@ -17,6 +17,9 @@ namespace ReSchedulerApp.Models
         public string? phonenumber { get; set; }
 
         public virtual Role? role { get; set; }
-        
+
+        public string FullName => $"{name} {surname}";
     }
+
+    
 }

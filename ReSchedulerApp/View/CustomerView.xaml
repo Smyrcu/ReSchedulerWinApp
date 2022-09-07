@@ -8,7 +8,21 @@
              xmlns:dc="clr-namespace:ReSchedulerApp.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+
+    <UserControl.Resources>
+        <VisualBrush x:Key="SearchHint" TileMode="None" Stretch="None" AlignmentX="Left">
+            <VisualBrush.Transform>
+                <TranslateTransform X="5" Y="0" />
+            </VisualBrush.Transform>
+            <VisualBrush.Visual>
+                <Grid>
+                    <TextBlock FontStyle="Italic" Foreground="{StaticResource plainTextColor3}" Opacity="0.3" Text="Search …"/>
+                </Grid>
+            </VisualBrush.Visual>
+        </VisualBrush>
+    </UserControl.Resources>
+
+        <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition/>
@@ -22,8 +36,9 @@
                         VerticalAlignment="Top"
                         Grid.Column="0">
                 <fa:IconImage Icon="Search" Height="20" Width="20" Foreground="{StaticResource plainTextColor3}"/>
-                <TextBox Text="Search..."   
-                         Name="SearchTextBox"
+                <TextBox 
+                         x:Name="SearchTextBox"
+                         Text="{Binding SearchText}"
                          MouseDown="SearchTextBox_OnMouseDown"
                          FontSize="13"
                          Height="24"
@@ -35,23 +50,30 @@
                          CaretBrush="{StaticResource plainTextColor3}"
                          BorderBrush="{StaticResource plainTextColor3}"
                          BorderThickness="0,0,0,1"                             
-                         VerticalContentAlignment="Center"
-                         Margin="5,5,0,0">
-                    <TextBox.InputBindings>
-                        <KeyBinding Command="{Binding SearchCommand}"/>
-                    </TextBox.InputBindings>
+                         VerticalContentAlignment="Center">
+                    <TextBox.Style>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Style.Triggers>
+                                <Trigger Property="Text" Value="">
+                                    <Setter Property="Background" Value="{StaticResource SearchHint}"/>
+                                    <Setter Property="Foreground" Value="{StaticResource ResourceKey=plainTextColor3}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
                 </TextBox>
             </StackPanel>
+
             <Button Grid.Column="1"
-                            Command="{Binding LoginCommand}"                            
-                            Content="Search"                            
-                            FontSize="12"
-                            FontFamily="Montserrat"
-                            Cursor="Hand"
-                            BorderThickness="0"
-                            Foreground="White"
-                            VerticalAlignment="Top"
-                            Click="ButtonBase_OnClick">
+                    Command="{Binding SearchCommand}"                            
+                    Content="Search"                            
+                    FontSize="12"
+                    FontFamily="Montserrat"
+                    Cursor="Hand"
+                    BorderThickness="0"
+                    Foreground="White"
+                    VerticalAlignment="Top"
+                    Click="ButtonBase_OnClick">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#773DFF"/>
@@ -76,6 +98,7 @@
                 </Button.Style>
             </Button>
         </Grid>
+
         <Border Grid.Row="1"
                 Background="#200F53"
                 CornerRadius="10" 
@@ -91,6 +114,11 @@
                       HorizontalGridLinesBrush="{StaticResource color8}"
                       VerticalGridLinesBrush="{StaticResource color8}">
 
+                <DataGrid.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#200f53"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="#78A3FC"/>
+                </DataGrid.Resources>
+
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="Background" Value="Transparent"/>
@@ -100,6 +128,7 @@
                         <Setter Property="FontSize" Value="15"/>
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
+
                 <DataGrid.RowStyle>
                     <Style TargetType="DataGridRow">
                         <Setter Property="Background" Value="Transparent"/>
@@ -107,12 +136,13 @@
                         <Setter Property="FontSize" Value="15"/>
                     </Style>
                 </DataGrid.RowStyle>
+
                 <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="ID" Binding="{Binding id}" ClipboardContentBinding="{x:Null}" Header="ID" HeaderStringFormat="" Width="40"/>
-                    <DataGridTextColumn x:Name="Name" Binding="{Binding name}"  Header="First name"/>
+                    <DataGridTextColumn Binding="{Binding id}" ClipboardContentBinding="{x:Null}" Header="ID" HeaderStringFormat="" Width="40"/>
+                    <DataGridTextColumn Binding="{Binding name}"  Header="First name"/>
                     <DataGridTextColumn Binding="{Binding surname}" ClipboardContentBinding="{x:Null}" Header="Last name"/>
-                    <DataGridTextColumn Binding="{Binding roleId}" ClipboardContentBinding="{x:Null}" Header="Phone"/>
-                    <DataGridTextColumn Binding="{Binding phonenumber}" ClipboardContentBinding="{x:Null}" Header="Number"/>
+                    <DataGridTextColumn Binding="{Binding roleId}" ClipboardContentBinding="{x:Null}" Header="Role id"/>
+                    <DataGridTextColumn Binding="{Binding phonenumber}" ClipboardContentBinding="{x:Null}" Header="Phone number"/>
                 </DataGrid.Columns>
             </DataGrid>
 

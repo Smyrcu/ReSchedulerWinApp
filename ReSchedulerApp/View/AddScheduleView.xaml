@@ -1,0 +1,299 @@
+﻿<UserControl x:Class="ReSchedulerApp.View.AddScheduleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ReSchedulerApp.View"
+             xmlns:dc="clr-namespace:ReSchedulerApp.ViewModels"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    <Grid Background="{StaticResource color12}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>    
+
+        <Grid Grid.Row="0"
+              Background="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       Text="Starting Date:"
+                       Foreground="{StaticResource color11}"
+                       FontFamily="Montserrat"
+                       FontSize="16"
+                       HorizontalAlignment="Center"
+                       Margin="0,10,0,0"
+                       />
+
+            <DatePicker Grid.Column="0"
+                        Background="Transparent"
+                        VerticalAlignment="Center"
+                        Width="150"
+                        BorderBrush="Transparent">
+
+            </DatePicker>
+
+            <!--
+            <TextBlock Grid.Column="1"
+                       Text="End:"
+                       Foreground="{StaticResource color11}"
+                       FontFamily="Montserrat"
+                       FontSize="16"
+                       HorizontalAlignment="Center"
+                       Margin="0,10,0,0"
+            />
+
+            <DatePicker Grid.Column="1"
+                        Background="Transparent"
+                        VerticalAlignment="Center"
+                        Width="150"
+                        IsEnabled="False">
+
+            </DatePicker>-->
+
+            <Button Grid.Column="1"    
+                    Content="Set"
+                    FontSize="12"
+                    FontFamily="Montserrat"
+                    Cursor="Hand"
+                    BorderThickness="0"
+                    Foreground="White"
+                    VerticalAlignment="Center">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#773DFF"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Height="30"
+                                            Width="120"
+                                            CornerRadius="15"
+                                            Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                                                          HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#836EFB"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="1"
+              Name="SetScheduleGrid"
+              Margin="10,20,10,10">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Grid.Column="0"
+                       Text="Workers:"
+                       FontFamily="Montserrat"
+                       FontSize="20"
+                       Foreground="{StaticResource color11}"
+                       HorizontalAlignment="Center"/>
+
+
+            <ScrollViewer Grid.Row="1"
+                          Grid.Column="0"
+                          Grid.ColumnSpan="2"
+                          HorizontalContentAlignment="Right"
+                          CanContentScroll="True" Margin="0,0,0,0">
+
+
+
+                <ScrollViewer.Resources>
+                <system:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">15</system:Double>
+            </ScrollViewer.Resources>
+
+                <Grid Name="WorkersGrid"
+                      ScrollViewer.CanContentScroll="True">
+                    <Grid.RowDefinitions>
+
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <ItemsControl ItemsSource="{Binding MyItems}" Grid.Column="0">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding FullName}"
+                                           Foreground="{StaticResource color11}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <StackPanel Grid.Column="0"
+                                Name="PanelWorkers">
+
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1"
+                                Name="PanelDay1">
+
+                    </StackPanel>
+
+
+                    <StackPanel Grid.Column="2"
+                                Name="PanelDay2">
+
+                    </StackPanel>
+
+
+                    <StackPanel Grid.Column="3"
+                                Name="PanelDay3">
+
+                    </StackPanel>
+
+
+                    <StackPanel Grid.Column="4"
+                                Name="PanelDay4">
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="5"
+                                Name="PanelDay5">
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="6"
+                                Name="PanelDay6">
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="7"
+                                Name="PanelDay7">
+
+                    </StackPanel>
+
+
+                </Grid>
+
+            </ScrollViewer>
+
+            
+
+                <Grid Grid.Column="1"
+                      Grid.Row="0"
+                      Name="DaysGrid"
+                      Margin="0,0,15,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    
+
+                    <TextBlock Grid.Column="0"
+                               Grid.Row="0"
+                               Text="DAY 1"
+                               Foreground="{StaticResource color11}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="18"/>
+
+                    <TextBlock Grid.Column="1"
+                               Grid.Row="0"
+                               Text="DAY 2"
+                               Foreground="{StaticResource color11}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="18"/>
+
+                    <TextBlock Grid.Column="2"
+                               Grid.Row="0"
+                               Text="DAY 3"
+                               Foreground="{StaticResource color11}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="18"/>
+
+                    <TextBlock Grid.Column="3"
+                               Grid.Row="0"
+                               Text="DAY 4"
+                               Foreground="{StaticResource color11}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="18"/>
+
+                    <TextBlock Grid.Column="4"
+                               Grid.Row="0"
+                               Text="DAY 5"
+                               Foreground="{StaticResource color11}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="18"/>
+
+                    <TextBlock Grid.Column="5"
+                               Grid.Row="0"
+                               Text="DAY 6"
+                               Foreground="{StaticResource color11}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="18"/>
+
+                    <TextBlock Grid.Column="6"
+                               Grid.Row="0"
+                               Text="DAY 7"
+                               Foreground="{StaticResource color11}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="18"/>
+
+                    
+                   
+
+
+
+
+                </Grid>
+
+            
+        </Grid>
+
+
+    </Grid>
+</UserControl>

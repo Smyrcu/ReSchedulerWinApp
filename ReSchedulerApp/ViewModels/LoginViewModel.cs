@@ -92,7 +92,6 @@ namespace ReSchedulerApp.ViewModels
         public ICommand LogingCommand { get; }
         public ICommand RecoverCommand { get; }
         public ICommand ShowPasswordCommand { get; }
-        public ICommand RememberPasswordCommand { get; }
 
         //Constructor
         public LoginViewModel()
