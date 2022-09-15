@@ -91,7 +91,7 @@ namespace ReSchedulerApp.ViewModels
             //Default view
             ExecuteShowHomeViewCommand(null);
             
-            LoadCurrentUserData();
+            //LoadCurrentUserData();
         }
 
         private void ExecuteShowAddScheduleViewModel(object obj)

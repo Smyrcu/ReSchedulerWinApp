@@ -99,6 +99,7 @@ namespace ReSchedulerApp.ViewModels
             userModel = new UserService();
             LogingCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
             RecoverCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("",""));
+            Username = "pan.smierci12@gmail.com";
         }
 
         private bool CanExecuteLoginCommand(object obj)

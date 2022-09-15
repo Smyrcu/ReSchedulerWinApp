@@ -19,6 +19,7 @@ namespace ReSchedulerApp.ViewModels
         public List<User> _users { get; set; }
         public BindableCollection<User> _myItems;
         public ICommand AddSearchItem { get; }
+        public BindableCollection<string> _searchItems;
 
         //Properties
 
@@ -34,10 +35,7 @@ namespace ReSchedulerApp.ViewModels
 
         public BindableCollection<User> MyItems
         {
-            get
-            {
-                return _myItems;
-            }
+            get => _myItems;
             set
             {
                 _myItems = value;
@@ -45,6 +43,15 @@ namespace ReSchedulerApp.ViewModels
             }
         }
 
+        public BindableCollection<string> SearchItems
+        {
+            get => _searchItems;
+            set
+            {
+                _searchItems = value;
+                OnPropertyChanged(nameof(SearchItems));
+            }
+        }
         public AddScheduleViewModel()
         {
             //Dev
@@ -52,7 +59,12 @@ namespace ReSchedulerApp.ViewModels
             //
             _users = testValues.UserList;
             MyItems = new BindableCollection<User>(_users);
-
+            SearchItems = new BindableCollection<string>
+            {
+                "Test1",
+                "Test2",
+                "Test3"
+            };
         }
 
     }
